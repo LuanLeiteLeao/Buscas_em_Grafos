@@ -1,0 +1,27 @@
+from graph_of_states.graph import graph
+from graph_of_states.graph import sergipe
+from graph_of_states.graph import bahia
+visited = set() # Set to keep track of visited nodes.
+
+# def dfs(visited, graph, node):
+#     print(node.name)
+#     if node not in visited:
+#         visited.add(node)
+#         index =  graph.index(node)
+#         for neighbour in graph[index].adjacencies:
+#             dfs(visited, graph, neighbour)
+
+def dfs(ponto_de_partida,ponto_final,graph,visited):
+    print("{}  ----->  {}".format(ponto_de_partida.name,ponto_final.name))
+    if ponto_de_partida == ponto_final:
+        return
+    elif ponto_de_partida not in visited:
+        visited.add(ponto_de_partida)
+        index = graph.index(ponto_de_partida)
+
+        for vizinho in graph[index].adjacencies:
+            dfs(vizinho, ponto_final, graph,visited)
+
+
+# Driver Code
+dfs(bahia,sergipe,graph,visited)
