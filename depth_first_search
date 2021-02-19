@@ -1,27 +1,29 @@
 from graph_of_states.graph import graph
 from graph_of_states.graph import sergipe
 from graph_of_states.graph import bahia
-visited = set() # Set to keep track of visited nodes.
+from graph_of_states.graph import test
 
-# def dfs(visited, graph, node):
-#     print(node.name)
-#     if node not in visited:
-#         visited.add(node)
-#         index =  graph.index(node)
-#         for neighbour in graph[index].adjacencies:
-#             dfs(visited, graph, neighbour)
 
-def dfs(ponto_de_partida,ponto_final,graph,visited):
-    print("{}  ----->  {}".format(ponto_de_partida.name,ponto_final.name))
+def dfs(ponto_de_partida, ponto_final, graph, visitado):
+    """
+   Args:
+         ponto_de_partida (State): é de onde irá começar a busca, o ponto de partida.
+         ponto_final (State): é o objetivo da busca, oque deve ser achado, o ponto de final
+
+     Returns:
+         State: caso ache retorna o elemento achado e caso não ache rentona None.
+    """
+    print("{}  ----->  {}".format(ponto_de_partida.name, ponto_final.name))
     if ponto_de_partida == ponto_final:
-        return
-    elif ponto_de_partida not in visited:
-        visited.add(ponto_de_partida)
+        return ponto_de_partida
+
+    elif ponto_de_partida not in visitado:
+        visitado.append(ponto_de_partida)
         index = graph.index(ponto_de_partida)
-
         for vizinho in graph[index].adjacencies:
-            dfs(vizinho, ponto_final, graph,visited)
+           return dfs(vizinho, ponto_final, graph, visitado)
 
+retorno =  dfs(sergipe, bahia, graph, [])
+print(retorno)
 
-# Driver Code
-dfs(bahia,sergipe,graph,visited)
+# help(dfs)

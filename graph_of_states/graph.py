@@ -1,6 +1,7 @@
 from abstract_data_type.states_graph import State
 
 # Estados
+test = State('test')
 para = State('Pará')
 roraima = State('Roraima')
 mato_grosso = State('Mato Grosso')
