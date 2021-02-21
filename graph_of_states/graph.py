@@ -9,7 +9,7 @@ goias = State('Goiás')
 minas_gerais = State('Minas Gerais')
 sao_paulo = State('São Paulo')
 rio_de_janeiro = State('Rio de Janeiro')
-espirito_santo = State('Bahia')
+espirito_santo = State('Espirito Santo')
 bahia = State('Bahia')
 sergipe = State('Sergipe')
 
