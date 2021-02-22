@@ -1,7 +1,12 @@
 from graph_of_states.graph import graph
 from graph_of_states.graph import sergipe
 from graph_of_states.graph import bahia
-from graph_of_states.graph import test
+from graph_of_states.graph import sao_paulo
+from graph_of_states.graph import espirito_santo
+from graph_of_states.graph import minas_gerais
+from graph_of_states.graph import mato_grosso
+from graph_of_states.graph import para
+
 
 
 def dfs(ponto_de_partida, ponto_final, graph, visitado):
@@ -13,17 +18,29 @@ def dfs(ponto_de_partida, ponto_final, graph, visitado):
      Returns:
          State: caso ache retorna o elemento achado e caso não ache rentona None.
     """
-    print("{}  ----->  {}".format(ponto_de_partida.name, ponto_final.name))
-    if ponto_de_partida == ponto_final:
-        return ponto_de_partida
 
-    elif ponto_de_partida not in visitado:
+    if ponto_de_partida not in visitado:
+        print("{}  ----->  {}".format(ponto_de_partida.name, ponto_final.name))
         visitado.append(ponto_de_partida)
         index = graph.index(ponto_de_partida)
         for vizinho in graph[index].adjacencies:
-           return dfs(vizinho, ponto_final, graph, visitado)
+            dfs(vizinho, ponto_final, graph, visitado)
 
-retorno =  dfs(sergipe, bahia, graph, [])
+
+
+
+retorno =  dfs(mato_grosso,minas_gerais,graph, [])
 print(retorno)
 
 # help(dfs)
+#
+# Mato Grosso  ----->  Minas Gerais
+# Roraima  ----->  Minas Gerais
+# Pará  ----->  Minas Gerais
+# Goiás  ----->  Minas Gerais
+# Minas Gerais  ----->  Minas Gerais
+# São Paulo  ----->  Minas Gerais
+# Rio de Janeiro  ----->  Minas Gerais
+# Espirito Santo  ----->  Minas Gerais
+# Bahia  ----->  Minas Gerais
+# Sergipe  ----->  Minas Gerais
