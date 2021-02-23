@@ -9,38 +9,23 @@ from graph_of_states.graph import para
 
 
 
-def dfs(ponto_de_partida, ponto_final, graph, visitado):
-    """
-   Args:
-         ponto_de_partida (State): é de onde irá começar a busca, o ponto de partida.
-         ponto_final (State): é o objetivo da busca, oque deve ser achado, o ponto de final
 
-     Returns:
-         State: caso ache retorna o elemento achado e caso não ache rentona None.
-    """
+def dfs_paths(grafo, ponto_de_partida, ponto_final):
+    pilha = [(ponto_de_partida, [ponto_de_partida])]
+    visitou = set()
+    while pilha:
+        (vertice, path) = pilha.pop()
+        if vertice not in visitou:
+            if vertice == ponto_final:
+                return path
+            visitou.add(vertice)
+            index = grafo.index(vertice)
+            for vizinho in grafo[index].adjacencies:
+                pilha.append((vizinho, path + [vizinho]))
 
-    if ponto_de_partida not in visitado:
-        print("{}  ----->  {}".format(ponto_de_partida.name, ponto_final.name))
-        visitado.append(ponto_de_partida)
-        index = graph.index(ponto_de_partida)
-        for vizinho in graph[index].adjacencies:
-            dfs(vizinho, ponto_final, graph, visitado)
+caminho = dfs_paths(graph, mato_grosso, sergipe)
 
+# mostra a lista
+for a in caminho:
+    print(a)
 
-
-
-retorno =  dfs(mato_grosso,minas_gerais,graph, [])
-print(retorno)
-
-# help(dfs)
-#
-# Mato Grosso  ----->  Minas Gerais
-# Roraima  ----->  Minas Gerais
-# Pará  ----->  Minas Gerais
-# Goiás  ----->  Minas Gerais
-# Minas Gerais  ----->  Minas Gerais
-# São Paulo  ----->  Minas Gerais
-# Rio de Janeiro  ----->  Minas Gerais
-# Espirito Santo  ----->  Minas Gerais
-# Bahia  ----->  Minas Gerais
-# Sergipe  ----->  Minas Gerais
